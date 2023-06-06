@@ -7,7 +7,6 @@ import '../reusable_widgets/reusable_widgets.dart';
 import '../utils/colors_utils.dart';
 import 'login_home.dart';
 
-
 class SignInScreen extends StatefulWidget {
   const SignInScreen({super.key});
 
@@ -87,8 +86,10 @@ class _SignInScreenState extends State<SignInScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text("Don't have an account? ",
-                        style: TextStyle(color: Colors.white70)),
+                    const Text(
+                      "Don't have an account? ",
+                      style: TextStyle(color: Colors.white70, fontSize: 17),
+                    ),
                     GestureDetector(
                       onTap: () {
                         Navigator.push(
@@ -100,7 +101,9 @@ class _SignInScreenState extends State<SignInScreen> {
                       child: const Text(
                         "Sign Up",
                         style: TextStyle(
-                            color: Colors.white, fontWeight: FontWeight.bold),
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 17),
                       ),
                     ),
                   ],
