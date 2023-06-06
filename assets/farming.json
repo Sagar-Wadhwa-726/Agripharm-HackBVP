@@ -1,0 +1,92 @@
+[
+    {
+        "imageUrl": "https://images.unsplash.com/photo-1609252509027-3928a66302fd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
+        "season": "Winter",
+        "crop name": "Wheat",
+        "description": "Sow seeds in November and December, and harvest in May or June.",
+        "farming-techniques": [
+            "Irrigation",
+            "Mulching"
+        ]
+    },
+    {
+        "imageUrl": "https://images.unsplash.com/photo-1623211269755-569fec0536d2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
+        "season": "Summer",
+        "crop name": "Tomato",
+        "description": "Plant seedlings in April or May, and harvest from June to September.",
+        "farming-techniques": [
+            "Staking",
+            "Fertilization"
+        ]
+    },
+    {
+        "imageUrl": "https://images.unsplash.com/photo-1623211270083-5743da6c67ec?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
+        "season": "Monsoon",
+        "crop name": "Rice",
+        "description": "Plant in June or July, and harvest from September to November.",
+        "farming-techniques": [
+            "Contour ploughing",
+            "Flood irrigation"
+        ]
+    },
+    {
+        "imageUrl": "https://images.unsplash.com/photo-1623211268529-69c56e303312?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
+        "season": "Spring",
+        "crop name": "Strawberries",
+        "description": "Plant seedlings in March or April, and harvest from May to July.",
+        "farming-techniques": [
+            "Raised beds",
+            "Drip irrigation"
+        ]
+    },
+    {
+        "imageUrl": "https://images.unsplash.com/photo-1532929900024-6413d2ed39c8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=897&q=80",
+        "season": "Summer",
+        "crop name": "Watermelon",
+        "description": "Plant seeds in May or June, and harvest from August to September.",
+        "farming-techniques": [
+            "Companion planting",
+            "Deep watering"
+        ]
+    },
+    {
+        "imageUrl": "https://images.unsplash.com/photo-1609252285484-c4cdffe5bb7b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
+        "season": "Winter",
+        "crop name": "Carrots",
+        "description": "Plant seeds in September or October, and harvest from December to February.",
+        "farming-techniques": [
+            "Crop rotation",
+            "Weed control"
+        ]
+    },
+    {
+        "imageUrl": "https://images.unsplash.com/photo-1600150806193-cf869bcfee05?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1031&q=80",
+        "season": "Monsoon",
+        "crop name": "Maize",
+        "description": "Plant seeds in July or August, and harvest from October to November.",
+        "farming-techniques": [
+            "Inter-cropping",
+            "Minimum tillage"
+        ]
+    },
+    {
+        "imageUrl": "https://images.unsplash.com/photo-1609252509229-364936a1d1a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
+        "season": "Spring",
+        "crop name": "Lettuce",
+        "description": "Plant seeds in February or March, and harvest from April to June.",
+        "farming-techniques": [
+            "Frost protection",
+            "Row covers"
+        ]
+    },
+    {
+        "imageUrl": "https://cdn.thewire.in/wp-content/uploads/2020/12/19163218/India_Farming.jpg",
+        "season": "Summer",
+        "crop name": "Peppers",
+        "description": "Plant seedlings in May or June, and harvest from August to October.",
+        "farming-techniques": [
+            "Pruning",
+            "Organic pest control"
+        ]
+    }
+]
