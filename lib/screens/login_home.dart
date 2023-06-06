@@ -217,33 +217,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 padding: EdgeInsets.fromLTRB(10, 50, 10, 40),
                 child: Text(
                   "Welcome to Agripharm",
-                  style: TextStyle(
-                      fontSize: 33,
-                      fontStyle: FontStyle.italic,
-                      fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 30),
                 ),
               ),
               Container(
                 padding: EdgeInsets.all(20),
-                child: Text(
-                  "Please Choose your preferred language. \n\nकृपया अपनी पसंदीदा भाषा चुनें",
-                  style: TextStyle(fontSize: 26),
-                ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(fixedSize: Size(120, 30)),
-                    child: Text("English", style: TextStyle(fontSize: 20)),
-                  ),
-                  ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(fixedSize: Size(120, 30)),
-                    child: Text("हिंदी", style: TextStyle(fontSize: 20)),
-                  ),
-                ],
               )
             ],
           ),
