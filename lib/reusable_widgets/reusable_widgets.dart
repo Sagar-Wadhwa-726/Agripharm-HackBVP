@@ -1,5 +1,4 @@
-// ignore_for_file: use_function_type_syntax_for_parameters, non_constant_identifier_names, avoid_types_as_parameter_names, sized_box_for_whitespace
-
+// ignore_for_file: use_function_type_syntax_for_parameters, non_constant_identifier_names, avoid_types_as_parameter_names, sized_box_for_whitespace, prefer_const_constructors
 import 'package:flutter/material.dart';
 
 import '../screens/reset_password.dart';
@@ -90,6 +89,24 @@ Widget forgetPassword(BuildContext context) {
         "Forgot Password?",
         style: TextStyle(color: Colors.white),
         textAlign: TextAlign.center,
+      ),
+    ),
+  );
+}
+
+// reusable widget for list tiles in the drawer section
+ListTile drawerTiles(BuildContext context, IconData prefixicon, String title, Function onSeleciton) {
+  return ListTile(
+    onTap: () => onSeleciton(),
+    leading: Icon(
+      prefixicon,
+      color: Colors.white,
+    ),
+    title: Text(
+      title,
+      textScaleFactor: 1.2,
+      style: TextStyle(
+        color: Colors.white,
       ),
     ),
   );
