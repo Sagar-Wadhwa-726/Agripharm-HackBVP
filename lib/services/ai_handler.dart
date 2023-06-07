@@ -4,7 +4,7 @@ import 'package:chat_gpt_sdk/chat_gpt_sdk.dart';
 class AIHandler {
   final _openAI = OpenAI.instance.build(
     // api key from open AI
-    token: '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',
+    token: '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',
 
     // basic information
     baseOption: HttpSetup(
@@ -14,13 +14,13 @@ class AIHandler {
   );
 
   // returns a string in Future, which means after some time asynchronously
-  // this string is the response which we get from the chat gpt 
+  // this string is the response which we get from the chat gpt
   Future<String> getResponse(String message) async {
     try {
       // make a request to chat gpt api
       final request = ChatCompleteText(messages: [
         Map.of({"role": "user", "content": message})
-      ], maxToken: 200, model: kChatGptTurbo0301Model);
+      ], model: kChatGptTurbo0301Model);
 
       final response = await _openAI.onChatCompletion(request: request);
       if (response != null) {
