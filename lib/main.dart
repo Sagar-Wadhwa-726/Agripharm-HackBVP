@@ -5,8 +5,9 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:get/get.dart';
 
-void main() async {
+Future main() async {
   //Flutter needs to call native code before calling runApp, makes sure that you have an instance of the WidgetsBinding, which is required to use platform channels to call the native code. Basically this ensures that firebase is initialised before we run our application
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -45,12 +46,12 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
         debugShowCheckedModeBanner: false,
         title: "Agripharm",
         theme: ThemeData(
           primarySwatch: Colors.green,
         ),
-        home: isLogin ? const HomeScreen() : const SignInScreen());
+        home: isLogin ? const HomeScreen() : SignInScreen());
   }
 }

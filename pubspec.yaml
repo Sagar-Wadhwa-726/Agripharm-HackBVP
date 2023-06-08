@@ -36,6 +36,7 @@ dependencies:
   chat_gpt_sdk: 2.0.2
   speech_to_text: ^6.1.1
   page_view_dot_indicator: ^2.1.0
+  file_picker: ^5.3.2
   cupertino_icons: ^1.0.5
   velocity_x: ^4.1.0
   image_picker: ^0.8.7+5
@@ -53,6 +54,8 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   flutter_riverpod: ^2.3.6
+  pinput: ^2.2.16
+  get: ^4.6.5
 
 dev_dependencies:
   flutter_test:

@@ -4,7 +4,7 @@ import 'package:chat_gpt_sdk/chat_gpt_sdk.dart';
 class AIHandler {
   final _openAI = OpenAI.instance.build(
     // api key from open AI
-    token: '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',
+    token: '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',
 
     // basic information
     baseOption: HttpSetup(
@@ -27,9 +27,9 @@ class AIHandler {
         return response.choices[0].message.content.trim();
       }
 
-      return 'Technical error / तकनीकी खराबी ';
+      return "Please try again after some time\nकृपया कुछ समय बाद पुन: प्रयास करें";
     } catch (e) {
-      return 'Technical error / तकनीकी खराबी';
+      return "Please try again after some time\nकृपया कुछ समय बाद पुन: प्रयास करें";
     }
   }
 

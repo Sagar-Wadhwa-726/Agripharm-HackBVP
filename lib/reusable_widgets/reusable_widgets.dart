@@ -1,8 +1,6 @@
 // ignore_for_file: use_function_type_syntax_for_parameters, non_constant_identifier_names, avoid_types_as_parameter_names, sized_box_for_whitespace, prefer_const_constructors
 import 'package:flutter/material.dart';
 
-import '../screens/reset_password.dart';
-
 // reusable widget for the logo image
 Image logoWidget(String imageName) {
   return Image.asset(
@@ -14,19 +12,21 @@ Image logoWidget(String imageName) {
 }
 
 // reusbale widget for the text fields
-TextField reusableTextField(String text, IconData icon, bool isPasswordType,
+TextField reusableTextField(String text, IconData icon, bool isOtpType,
     TextEditingController controller) {
   return TextField(
-    keyboardType: isPasswordType
-        ? TextInputType.visiblePassword
-        : TextInputType.emailAddress,
+    maxLength: isOtpType ? 6 : 10,
+    textInputAction: TextInputAction.next,
+    keyboardType:
+        isOtpType ? TextInputType.visiblePassword : TextInputType.phone,
     controller: controller,
-    obscureText: isPasswordType,
-    enableSuggestions: !isPasswordType,
-    autocorrect: !isPasswordType,
+    obscureText: isOtpType,
+    enableSuggestions: !isOtpType,
+    autocorrect: !isOtpType,
     cursorColor: Colors.green,
-    style: TextStyle(color: Colors.black.withOpacity(0.9)),
+    style: TextStyle(color: Colors.black.withOpacity(0.9), fontSize: 18),
     decoration: InputDecoration(
+      counterText: "",
       prefixIcon: Icon(icon, color: Colors.black45),
       labelText: text,
       labelStyle: TextStyle(color: Colors.white.withOpacity(0.9)),
@@ -71,31 +71,9 @@ Container generalButton(BuildContext context, Function onTap, String title) {
   );
 }
 
-//reusable widget for forgot password
-Widget forgetPassword(BuildContext context) {
-  return Container(
-    width: MediaQuery.of(context).size.width,
-    height: 35,
-    alignment: Alignment.bottomRight,
-    child: TextButton(
-      onPressed: () {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const ResetPasswordScreen(),
-            ));
-      },
-      child: const Text(
-        "Forgot Password?",
-        style: TextStyle(color: Colors.white),
-        textAlign: TextAlign.center,
-      ),
-    ),
-  );
-}
-
 // reusable widget for list tiles in the drawer section
-ListTile drawerTiles(BuildContext context, IconData prefixicon, String title, Function onSeleciton) {
+ListTile drawerTiles(BuildContext context, IconData prefixicon, String title,
+    Function onSeleciton) {
   return ListTile(
     onTap: () => onSeleciton(),
     leading: Icon(

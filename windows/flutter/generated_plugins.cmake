@@ -4,6 +4,7 @@
 
 list(APPEND FLUTTER_PLUGIN_LIST
   firebase_core
+  smart_auth
   tflite_flutter_plus
   url_launcher_windows
 )

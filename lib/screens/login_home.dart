@@ -23,11 +23,13 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  // current users phone number
+  String userPhoneNumber = FirebaseAuth.instance.currentUser!.phoneNumber!;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Agripharm Chatbot"),
+        title: Text("AgriPharm Chatbot"),
       ),
       drawer: Drawer(
         child: Container(
@@ -40,9 +42,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: UserAccountsDrawerHeader(
                   decoration:
                       BoxDecoration(color: Color.fromARGB(255, 0, 139, 203)),
-                  currentAccountPictureSize: const Size.fromRadius(30.0),
-                  accountName: Text("Agripharm User"),
-                  accountEmail: Text("user@agripharm.com"),
+                  currentAccountPictureSize: const Size.fromRadius(35.0),
+                  accountName: Text(userPhoneNumber),
+                  accountEmail: Text("AgriPharm User"),
                   margin: EdgeInsets.zero,
                   currentAccountPicture: CircleAvatar(
                     backgroundImage: AssetImage("assets/images/user.png"),
@@ -69,22 +71,6 @@ class _HomeScreenState extends State<HomeScreen> {
               SizedBox(
                 height: 10,
               ),
-              drawerTiles(context, Icons.person_3_rounded,
-                  "About Agripharm\nहमारे बारे में", () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => AboutPage()));
-              }),
-              SizedBox(
-                height: 10,
-              ),
-              drawerTiles(
-                  context, Icons.phone_android, "Contact Us\nसंपरक करें", () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => ContactPage()));
-              }),
-              SizedBox(
-                height: 10,
-              ),
               drawerTiles(context, Icons.recommend,
                   "Crop Recommendation\nसर्वोत्तम फसल पद्धतियाँ", () {
                 Navigator.push(
@@ -106,11 +92,27 @@ class _HomeScreenState extends State<HomeScreen> {
                 height: 10,
               ),
               drawerTiles(context, Icons.question_mark_outlined,
-                  "How to farm\nकैसे खेती करें", () {
+                  "How to farm\nखेती कैसे करें", () {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
                         builder: (context) => FarmingPractices()));
+              }),
+              SizedBox(
+                height: 10,
+              ),
+              drawerTiles(context, Icons.person_3_rounded,
+                  "About Agripharm\nहमारे बारे में", () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => AboutPage()));
+              }),
+              SizedBox(
+                height: 10,
+              ),
+              drawerTiles(
+                  context, Icons.phone_android, "Contact Us\nसंपरक करें", () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => ContactPage()));
               }),
               SizedBox(
                 height: 40,
@@ -119,6 +121,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 width: 50,
                 height: 40,
                 child: ElevatedButton(
+                  style: ButtonStyle(
+                      backgroundColor: MaterialStateColor.resolveWith(
+                          (states) => Color.fromARGB(255, 209, 14, 0))),
                   child: const Text(
                     "LOGOUT",
                   ),

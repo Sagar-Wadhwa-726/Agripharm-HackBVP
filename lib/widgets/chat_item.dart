@@ -43,6 +43,7 @@ class ChatItem extends StatelessWidget {
               text,
               style: TextStyle(
                 color: Theme.of(context).colorScheme.onSecondary,
+                fontSize: 15,
               ),
             ),
           ),
@@ -80,7 +81,7 @@ class ProfileContainer extends StatelessWidget {
         ),
       ),
       child: Icon(
-        isMe ? Icons.person : Icons.computer,
+        isMe ? Icons.person : Icons.android_sharp,
         color: Theme.of(context).colorScheme.onSecondary,
       ),
     );

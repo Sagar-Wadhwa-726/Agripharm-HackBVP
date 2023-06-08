@@ -27,21 +27,25 @@ class ContactPage extends StatelessWidget {
           padding: EdgeInsets.all(20),
           child: Column(
             children: [
+              Image(
+                image: AssetImage("assets/images/login_page_image.png"),
+                height: 250,
+                width: 250,
+              ),
               Text(
                   textAlign: TextAlign.justify,
-                  textScaleFactor: 1.5,
-                  style: TextStyle(fontWeight: FontWeight.bold),
+                  textScaleFactor: 1.4,
                   "Got any query? Feel free to contact us on the phone number given below or write an email to us.\n\nकोई सवाल है? नीचे दिए गए फ़ोन नंबर पर हमसे बेझिझक संपर्क करें या हमें एक ईमेल लिखें।\n\n"),
               ListTile(
                 onTap: () {
-                  launchDialer('+91-9831012390');
+                  launchDialer('+91-9999999999');
                 },
                 leading: Icon(
                   Icons.phone,
                   color: Colors.black,
                 ),
                 title: Text(
-                  "+91-9831012390",
+                  "+91-9999999999",
                   textScaleFactor: 1.2,
                   style: TextStyle(
                     color: Colors.black,

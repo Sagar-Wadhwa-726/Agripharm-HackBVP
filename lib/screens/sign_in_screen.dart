@@ -1,23 +1,88 @@
-// ignore_for_file: prefer_final_fields, must_be_immutable, prefer_const_literals_to_create_immutables, prefer_const_constructors, nullable_type_in_catch_clause
-
-import 'package:agripharm/screens/sign_up_screen.dart';
+// ignore_for_file: prefer_final_fields, must_be_immutable, prefer_const_literals_to_create_immutables, prefer_const_constructors, nullable_type_in_catch_clause, unnecessary_new, use_key_in_widget_constructors, library_private_types_in_public_api, avoid_print, unused_catch_clause, empty_catches
+import 'package:agripharm/screens/otp_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../reusable_widgets/reusable_widgets.dart';
 import '../utils/colors_utils.dart';
-import 'login_home.dart';
 
 class SignInScreen extends StatefulWidget {
-  const SignInScreen({super.key});
-
   @override
-  State<SignInScreen> createState() => _SignInScreenState();
+  _SignInScreenState createState() => _SignInScreenState();
 }
 
 class _SignInScreenState extends State<SignInScreen> {
-  TextEditingController _passwordTextController = TextEditingController();
-  TextEditingController _emailTextController = TextEditingController();
-  final formKey = GlobalKey<FormState>();
+  final TextEditingController _phoneNumberTextController =
+      TextEditingController();
+
+  Future<void> signInWithPhoneNumber(String phoneNumber) async {
+    FirebaseAuth auth = FirebaseAuth.instance;
+
+    try {
+      await auth.verifyPhoneNumber(
+        //phoneNumber where OTP has to be sent
+        phoneNumber: phoneNumber,
+
+        // Function which does something when the code is sent to the phone number
+        codeSent: (String verificationId, int? resendToken) async {
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text("OTP sent successfully"),
+          ));
+          String smsCode = '';
+          PhoneAuthCredential credential = PhoneAuthProvider.credential(
+            verificationId: verificationId,
+            smsCode: smsCode,
+          );
+          Get.to(OtpScreen(), arguments: [verificationId]);
+          try {
+            await auth.signInWithCredential(credential);
+          } on FirebaseAuthException catch (error) {
+            print("error-1 ${error.code}");
+          }
+        },
+
+        // function which executes when the verification of phone number is completed
+        verificationCompleted: (PhoneAuthCredential credential) async {
+          await auth.signInWithCredential(credential);
+        },
+
+        // functions which informs user if the verification has failed
+        verificationFailed: (FirebaseAuthException error) {
+          {
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              content: Text(error.message.toString()),
+            ));
+          }
+        },
+
+        // timeout specified
+        codeAutoRetrievalTimeout: (String verificationId) {},
+        timeout: Duration(seconds: 120),
+      );
+    } on FirebaseAuthException catch (error) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(error.message.toString()),
+      ));
+    }
+  }
+
+  void _userLogin() async {
+    String mobile = _phoneNumberTextController.text;
+    if (mobile.length != 10) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text("Please enter a valid 10 digit mobile number")));
+    } else {
+      signInWithPhoneNumber("+91$mobile");
+    }
+  }
+
+  @override
+  @override
+  void dispose() {
+    _phoneNumberTextController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,7 +91,7 @@ class _SignInScreenState extends State<SignInScreen> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         title: Text(
-          "Agripharm",
+          "AgriPharm",
           style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
         ),
       ),
@@ -46,65 +111,24 @@ class _SignInScreenState extends State<SignInScreen> {
                 20, MediaQuery.of(context).size.height * 0.2, 20, 0),
             child: Column(
               children: <Widget>[
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(100),
-                  child: SizedBox.fromSize(
-                    size: Size.fromRadius(90),
-                    child: logoWidget("assets/images/logo1.jpg"),
-                  ),
+                Image(
+                  image: AssetImage("assets/images/login_page_image.png"),
+                  height: 250,
+                  width: 250,
                 ),
                 const SizedBox(height: 30),
-                reusableTextField("Enter Email-ID", Icons.person_outline, false,
-                    _emailTextController),
-                const SizedBox(height: 30),
-                reusableTextField("Enter Password", Icons.lock, true,
-                    _passwordTextController),
-                const SizedBox(height: 5),
-                forgetPassword(context),
-                generalButton(context, () async {
-                  try {
-                    await FirebaseAuth.instance
-                        .signInWithEmailAndPassword(
-                            email: _emailTextController.text,
-                            password: _passwordTextController.text)
-                        .then((value) {
-                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                        content: Text("User Logged In successfully"),
-                      ));
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => HomeScreen(),
-                          ));
-                    });
-                  } on FirebaseAuthException catch (error) {
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                      content: Text(error.message.toString()),
-                    ));
-                  }
-                }, "LOG IN"),
+                reusableTextField("Enter Phone number", Icons.phone, false,
+                    _phoneNumberTextController),
+                const SizedBox(height: 35),
+                generalButton(context, () {
+                  _userLogin();
+                }, "RECEIVE OTP"),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const Text(
-                      "Don't have an account? ",
-                      style: TextStyle(color: Colors.white70, fontSize: 17),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => SignUpScreen(),
-                            ));
-                      },
-                      child: const Text(
-                        "Sign Up",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 17),
-                      ),
+                      "Standard data rates may apply to receive OTP",
+                      style: TextStyle(color: Colors.white, fontSize: 17),
                     ),
                   ],
                 ),
