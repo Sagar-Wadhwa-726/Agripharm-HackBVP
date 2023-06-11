@@ -15,6 +15,8 @@ class _SignInScreenState extends State<SignInScreen> {
   final TextEditingController _phoneNumberTextController =
       TextEditingController();
 
+  var otpSent = false;
+
   Future<void> signInWithPhoneNumber(String phoneNumber) async {
     FirebaseAuth auth = FirebaseAuth.instance;
 
@@ -25,6 +27,9 @@ class _SignInScreenState extends State<SignInScreen> {
 
         // Function which does something when the code is sent to the phone number
         codeSent: (String verificationId, int? resendToken) async {
+          setState(() {
+            otpSent = true;
+          });
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             content: Text("OTP sent successfully"),
           ));
@@ -33,6 +38,9 @@ class _SignInScreenState extends State<SignInScreen> {
             verificationId: verificationId,
             smsCode: smsCode,
           );
+          setState(() {
+            otpSent = false;
+          });
           Get.to(OtpScreen(), arguments: [verificationId]);
           try {
             await auth.signInWithCredential(credential);
@@ -43,11 +51,17 @@ class _SignInScreenState extends State<SignInScreen> {
 
         // function which executes when the verification of phone number is completed
         verificationCompleted: (PhoneAuthCredential credential) async {
+          setState(() {
+            otpSent = true;
+          });
           await auth.signInWithCredential(credential);
         },
 
         // functions which informs user if the verification has failed
         verificationFailed: (FirebaseAuthException error) {
+          setState(() {
+            otpSent = false;
+          });
           {
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
               content: Text(error.message.toString()),
@@ -57,9 +71,12 @@ class _SignInScreenState extends State<SignInScreen> {
 
         // timeout specified
         codeAutoRetrievalTimeout: (String verificationId) {},
-        timeout: Duration(seconds: 120),
+        timeout: Duration(seconds: 10),
       );
     } on FirebaseAuthException catch (error) {
+      setState(() {
+        otpSent = false;
+      });
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text(error.message.toString()),
       ));
@@ -69,6 +86,9 @@ class _SignInScreenState extends State<SignInScreen> {
   void _userLogin() async {
     String mobile = _phoneNumberTextController.text;
     if (mobile.length != 10) {
+      setState(() {
+        otpSent = false;
+      });
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           content: Text("Please enter a valid 10 digit mobile number")));
     } else {
@@ -108,7 +128,7 @@ class _SignInScreenState extends State<SignInScreen> {
         child: SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.fromLTRB(
-                20, MediaQuery.of(context).size.height * 0.2, 20, 0),
+                20, MediaQuery.of(context).size.height * 0.12, 20, 0),
             child: Column(
               children: <Widget>[
                 Image(
@@ -116,18 +136,31 @@ class _SignInScreenState extends State<SignInScreen> {
                   height: 250,
                   width: 250,
                 ),
-                const SizedBox(height: 30),
+                const SizedBox(height: 10),
+                Text(
+                  "Enter your phone number to begin",
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 23),
+                ),
+                const SizedBox(height: 40),
                 reusableTextField("Enter Phone number", Icons.phone, false,
                     _phoneNumberTextController),
                 const SizedBox(height: 35),
-                generalButton(context, () {
-                  _userLogin();
-                }, "RECEIVE OTP"),
+                otpSent == false
+                    ? generalButton(context, () {
+                        setState(() {
+                          otpSent = true;
+                        });
+                        _userLogin();
+                      }, "RECEIVE OTP")
+                    : CircularProgressIndicator(
+                        color: Colors.black,
+                      ),
+                SizedBox(height: 20),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const Text(
-                      "Standard data rates may apply to receive OTP",
+                      "Standard carrier charges may apply to receive OTP",
                       style: TextStyle(color: Colors.white, fontSize: 17),
                     ),
                   ],

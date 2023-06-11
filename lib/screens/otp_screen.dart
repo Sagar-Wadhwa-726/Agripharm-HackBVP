@@ -17,6 +17,7 @@ class OtpScreen extends StatefulWidget {
 
 class _OtpScreenState extends State<OtpScreen> {
   String otpCode = "";
+  var isVerified = false;
   final String verificationId = Get.arguments[0];
   FirebaseAuth auth = FirebaseAuth.instance;
 
@@ -31,6 +32,9 @@ class _OtpScreenState extends State<OtpScreen> {
           verificationId: verificationId, smsCode: userOtp);
       User? user = (await auth.signInWithCredential(creds)).user;
       if (user != null) {
+        setState(() {
+          isVerified = true;
+        });
         Navigator.pushAndRemoveUntil(
             context,
             MaterialPageRoute(
@@ -42,6 +46,9 @@ class _OtpScreenState extends State<OtpScreen> {
         ));
       }
     } on FirebaseAuthException catch (error) {
+      setState(() {
+        isVerified = false;
+      });
       if (error.code == "invalid-verification-code") {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           content: Text("Invalid OTP entered"),
@@ -54,10 +61,16 @@ class _OtpScreenState extends State<OtpScreen> {
     if (otpCode != null) {
       verifyOtp(verificationId, otpCode);
     } else if (otpCode.length != 6) {
+      setState(() {
+        isVerified = false;
+      });
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text("Please enter a 6-Digit OTP"),
       ));
     } else if (otpCode == null) {
+      setState(() {
+        isVerified = false;
+      });
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text("Please enter the OTP sent"),
       ));
@@ -114,7 +127,7 @@ class _OtpScreenState extends State<OtpScreen> {
         child: SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.fromLTRB(
-                20, MediaQuery.of(context).size.height * 0.2, 20, 0),
+                20, MediaQuery.of(context).size.height * 0.12, 20, 0),
             child: Column(
               children: <Widget>[
                 Image(
@@ -142,9 +155,15 @@ class _OtpScreenState extends State<OtpScreen> {
                   showCursor: true,
                 ),
                 const SizedBox(height: 35),
-                generalButton(context, () {
-                  _login();
-                }, "VERIFY OTP"),
+                isVerified == false
+                    ? generalButton(context, () {
+                        setState(() {
+                          isVerified = true;
+                        });
+                        _login();
+                      }, "VERIFY OTP")
+                    : CircularProgressIndicator(color: Colors.black),
+                SizedBox(height: 20),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
