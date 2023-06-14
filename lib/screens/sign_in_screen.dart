@@ -97,7 +97,6 @@ class _SignInScreenState extends State<SignInScreen> {
   }
 
   @override
-  @override
   void dispose() {
     _phoneNumberTextController.dispose();
     super.dispose();
@@ -152,15 +151,13 @@ class _SignInScreenState extends State<SignInScreen> {
                         });
                         _userLogin();
                       }, "RECEIVE OTP")
-                    : CircularProgressIndicator(
-                        color: Colors.black,
-                      ),
+                    : CircularProgressIndicator(color: Colors.black),
                 SizedBox(height: 20),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const Text(
-                      "Standard carrier charges may apply to receive OTP",
+                      "Standard charges may apply to receive OTP",
                       style: TextStyle(color: Colors.white, fontSize: 17),
                     ),
                   ],

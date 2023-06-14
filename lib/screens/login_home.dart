@@ -52,25 +52,19 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
               ),
-              SizedBox(
-                height: 10,
-              ),
+              SizedBox(height: 10),
               drawerTiles(
                   context, Icons.accessibility_outlined, "Tutorial\nट्यूटोरियल",
                   () {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => TutorialScreen()));
               }),
-              SizedBox(
-                height: 10,
-              ),
+              SizedBox(height: 10),
               drawerTiles(context, Icons.home, "Home\nमुख्य मेन्यू", () {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => HomeScreen()));
               }),
-              SizedBox(
-                height: 10,
-              ),
+              SizedBox(height: 10),
               drawerTiles(context, Icons.recommend,
                   "Crop Recommendation\nसर्वोत्तम फसल पद्धतियाँ", () {
                 Navigator.push(
@@ -78,9 +72,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     MaterialPageRoute(
                         builder: (context) => CropRecommenderScreen()));
               }),
-              SizedBox(
-                height: 10,
-              ),
+              SizedBox(height: 10),
               drawerTiles(context, Icons.health_and_safety,
                   "Check Plant Health\nपौधे के स्वास्थ्य की जाँच करें", () {
                 Navigator.push(
@@ -88,9 +80,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     MaterialPageRoute(
                         builder: (context) => PlantHealthCheckScreen()));
               }),
-              SizedBox(
-                height: 10,
-              ),
+              SizedBox(height: 10),
               drawerTiles(context, Icons.question_mark_outlined,
                   "How to farm\nखेती कैसे करें", () {
                 Navigator.push(
@@ -98,25 +88,19 @@ class _HomeScreenState extends State<HomeScreen> {
                     MaterialPageRoute(
                         builder: (context) => FarmingPractices()));
               }),
-              SizedBox(
-                height: 10,
-              ),
+              SizedBox(height: 10),
               drawerTiles(context, Icons.person_3_rounded,
                   "About Agripharm\nहमारे बारे में", () {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => AboutPage()));
               }),
-              SizedBox(
-                height: 10,
-              ),
+              SizedBox(height: 10),
               drawerTiles(
                   context, Icons.phone_android, "Contact Us\nसंपरक करें", () {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => ContactPage()));
               }),
-              SizedBox(
-                height: 40,
-              ),
+              SizedBox(height: 40),
               SizedBox(
                 width: 50,
                 height: 40,
