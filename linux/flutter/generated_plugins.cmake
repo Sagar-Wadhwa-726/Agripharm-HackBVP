@@ -4,7 +4,8 @@
 
 list(APPEND FLUTTER_PLUGIN_LIST
   smart_auth
-  tflite_flutter_plus
+  tflite_flutter
+  tflite_flutter_helper
   url_launcher_linux
 )
 

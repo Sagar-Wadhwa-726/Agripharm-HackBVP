@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
-
 Future main() async {
   //Flutter needs to call native code before calling runApp, makes sure that you have an instance of the WidgetsBinding, which is required to use platform channels to call the native code. Basically this ensures that firebase is initialised before we run our application
   WidgetsFlutterBinding.ensureInitialized();
@@ -40,8 +39,8 @@ class _MyAppState extends State<MyApp> {
   // before running the application call the init state method which will call the checkIfLogin method
   @override
   void initState() {
-    checkIfLogin();
     super.initState();
+    checkIfLogin();
   }
 
   @override

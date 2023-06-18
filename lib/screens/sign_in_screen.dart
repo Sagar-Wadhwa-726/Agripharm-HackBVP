@@ -138,7 +138,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 const SizedBox(height: 10),
                 Text(
                   "Enter your phone number to begin",
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 23),
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                 ),
                 const SizedBox(height: 40),
                 reusableTextField("Enter Phone number", Icons.phone, false,
@@ -158,7 +158,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   children: [
                     const Text(
                       "Standard charges may apply to receive OTP",
-                      style: TextStyle(color: Colors.white, fontSize: 17),
+                      style: TextStyle(color: Colors.white, fontSize: 15),
                     ),
                   ],
                 ),

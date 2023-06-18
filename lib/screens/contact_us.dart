@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../utils/colors_utils.dart';
+import 'package:animate_do/animate_do.dart';
 
 class ContactPage extends StatelessWidget {
   const ContactPage({super.key});
@@ -27,44 +28,52 @@ class ContactPage extends StatelessWidget {
           padding: EdgeInsets.all(20),
           child: Column(
             children: [
-              Image(
-                image: AssetImage("assets/images/login_page_image.png"),
-                height: 250,
-                width: 250,
-              ),
-              Text(
-                  textAlign: TextAlign.justify,
-                  textScaleFactor: 1.4,
-                  "Got any query? Feel free to contact us on the phone number given below or write an email to us.\n\nकोई सवाल है? नीचे दिए गए फ़ोन नंबर पर हमसे बेझिझक संपर्क करें या हमें एक ईमेल लिखें।\n\n"),
-              ListTile(
-                onTap: () {
-                  launchDialer('+91-9999999999');
-                },
-                leading: Icon(
-                  Icons.phone,
-                  color: Colors.black,
+              FadeInRight(
+                child: Image(
+                  image: AssetImage("assets/images/login_page_image.png"),
+                  height: 250,
+                  width: 250,
                 ),
-                title: Text(
-                  "+91-9999999999",
-                  textScaleFactor: 1.2,
-                  style: TextStyle(
+              ),
+              FadeInLeft(
+                child: Text(
+                    textAlign: TextAlign.justify,
+                    textScaleFactor: 1.4,
+                    "Got any query? Feel free to contact us on the phone number given below or write an email to us.\n\nकोई सवाल है? नीचे दिए गए फ़ोन नंबर पर हमसे बेझिझक संपर्क करें या हमें एक ईमेल लिखें।\n\n"),
+              ),
+              FadeInLeft(
+                child: ListTile(
+                  onTap: () {
+                    launchDialer('+91-9999999999');
+                  },
+                  leading: Icon(
+                    Icons.phone,
                     color: Colors.black,
+                  ),
+                  title: Text(
+                    "+91-9999999999",
+                    textScaleFactor: 1.2,
+                    style: TextStyle(
+                      color: Colors.black,
+                    ),
                   ),
                 ),
               ),
-              ListTile(
-                onTap: () {
-                  launcEmailService("support@agripharm.com");
-                },
-                leading: Icon(
-                  Icons.email,
-                  color: Colors.black,
-                ),
-                title: Text(
-                  "support@agripharm.com",
-                  textScaleFactor: 1.2,
-                  style: TextStyle(
+              FadeInLeft(
+                child: ListTile(
+                  onTap: () {
+                    launcEmailService("support@agripharm.com");
+                  },
+                  leading: Icon(
+                    Icons.email,
                     color: Colors.black,
+                  ),
+                  title: Text(
+                    "support@agripharm.com",
+                    textScaleFactor: 1.2,
+                    style: TextStyle(
+                      color: Colors.black,
+                    ),
                   ),
                 ),
               ),
